@@ -1,23 +1,11 @@
-import Greetings from '../component/test/Greetings';
 import Container from '../component/container';
-import Button from '../component/button/button';
 
 import logo from '../logo.svg';
 
 function Login() {
-  const alarm = () => {};
-
-  const onClick = () => {};
-
   return (
     <div className="App">
-      <Greetings name="Hello" onClick={onClick} mark="mark" optional="optional" />
-
       <Container>This is Container.</Container>
-
-      <Button width={100} onClick={alarm}>
-        <div>This is Button</div>
-      </Button>
 
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

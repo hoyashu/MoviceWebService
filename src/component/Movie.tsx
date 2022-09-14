@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MovieProps } from '../containers/Home';
+import { MovieProps } from '../containers/MovieList';
 
 function Movie({ id, mediumCoverImage, title, summary, descriptionFull, genres }: MovieProps) {
   return (

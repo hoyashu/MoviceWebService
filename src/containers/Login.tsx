@@ -1,41 +1,70 @@
-import { Link } from 'react-router-dom';
+import { Col, Row, Button, Checkbox, Form, Input, Breadcrumb } from 'antd';
+import React from 'react';
 import Container from '../component/container';
-import Button from '../component/button/button';
+import { ContainerImage } from '../component/container/styles';
+import { PATH } from '../routes/constant';
 
 function Login() {
-  const alarm = () => {
-    console.log('hello');
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
   };
 
   return (
-    <div className="App">
-      <Container>This is Container.</Container>
-      <form action="#">
-        <fieldset>
-          <legend>로그인 정보</legend>
-          <ul>
-            <li>
-              <label htmlFor="id">
-                아이디
-                <input type="text" id="id" />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="pw">
-                비밀번호
-                <input type="password" id="pw" />
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-      </form>
-      <Button width={100} onClick={alarm}>
-        <div>This is Button</div>
-      </Button>
-      <Link to="/">
-        <div>메인으로</div>
-      </Link>
-    </div>
+    <>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item href={PATH.HOME}>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>Login</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="site-layout-content">
+        <Row justify="center" align="middle">
+          <Col>
+            <Container>
+              <ContainerImage src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cjBn/image/cc7TqA9PyQp4kFKo7YT6mjNijcM.jpg" />
+              반가워요!
+            </Container>
+            <Form
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
+            >
+              <Form.Item
+                label="Username"
+                name="username"
+                rules={[{ required: true, message: 'Please input your username!' }]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[{ required: true, message: 'Please input your password!' }]}
+              >
+                <Input.Password />
+              </Form.Item>
+
+              <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+                <Checkbox>Remember me</Checkbox>
+              </Form.Item>
+
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 }
 

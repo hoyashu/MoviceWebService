@@ -1,9 +1,9 @@
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
+import { Breadcrumb, Button } from 'antd';
+import { PATH } from '../routes/constant';
 import Movie from '../component/Movie';
-import Button from '../component/button/button';
-import Layout from '../component/Layout/Layout';
 
 // useParams : 주소에서 변화하는 값(파라미터 값)을 가져와주는 컴포넌트
 
@@ -48,20 +48,21 @@ function MovieDetail() {
 
   useEffect(() => {
     if (id) {
-      void getMovieDetail(id);
+      getMovieDetail(id);
     }
   }, [id]);
-  const onClick = () => {
-    const joinHello = 0;
-    console.log(joinHello);
-  };
   return (
-    <Layout>
-      <div>
+    <>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item href={PATH.HOME}>Home</Breadcrumb.Item>
+        <Breadcrumb.Item href={PATH.MOVIELIST}>Movie</Breadcrumb.Item>
+        <Breadcrumb.Item>Detail</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="site-layout-content">
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div>
+          <>
             <h1>Detail</h1>
             <Movie
               key={movieDetail.id}
@@ -71,16 +72,13 @@ function MovieDetail() {
               summary={movieDetail.summary}
               genres={movieDetail.genres}
             />
-
-            <Link to="/">
-              <Button onClick={() => onClick()} width={100}>
-                <div>목록으로 이동</div>
-              </Button>
-            </Link>
-          </div>
+            <Button type="default" href={PATH.MOVIELIST}>
+              Go to List
+            </Button>
+          </>
         )}
       </div>
-    </Layout>
+    </>
   );
 }
 export default MovieDetail;
