@@ -1,5 +1,6 @@
-import { Col, Row, Button, Checkbox, Form, Input, Breadcrumb } from 'antd';
+import { Breadcrumb, Button, Checkbox, Col, Form, Input, Row } from 'antd';
 import React from 'react';
+
 import Container from '../component/container';
 import { ContainerImage } from '../component/container/styles';
 import { PATH } from '../routes/constant';

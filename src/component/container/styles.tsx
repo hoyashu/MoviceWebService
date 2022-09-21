@@ -1,7 +1,6 @@
-// src/component/container/styles.tsx
-import styled from 'styled-components/macro';
-
 // props 분리 - 동적 스타일링 : index.tsx에서 지정
+import styled from '@emotion/styled';
+
 interface ContainerProps {
   display?: boolean;
 }

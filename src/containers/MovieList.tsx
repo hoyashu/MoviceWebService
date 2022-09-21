@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { Breadcrumb } from 'antd';
+import React, { useEffect, useState } from 'react';
+
 import Movie from '../component/Movie';
 import { PATH } from '../routes/constant';
 

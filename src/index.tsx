@@ -1,10 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './containers/App';
-import reportWebVitals from './reportWebVitals';
-
 import 'antd/dist/antd.min.css';
 import './index.css';
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// eslint-disable-next-line import/extensions
+import App from './containers/App';
+import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

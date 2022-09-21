@@ -1,5 +1,5 @@
-// src/component/container/index.tsx
 import React from 'react';
+
 import * as S from './styles';
 
 interface ContainerProps {

@@ -1,4 +1,5 @@
-import { Col, Row, Breadcrumb, Button } from 'antd';
+import { Breadcrumb, Button, Col, Row } from 'antd';
+
 import { PATH } from '../routes/constant';
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
       </Breadcrumb>
+
       <div className="site-layout-content">
         <Row justify="center" align="middle">
           <Col>

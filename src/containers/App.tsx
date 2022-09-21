@@ -1,12 +1,14 @@
+import './App.css';
+
 import { Layout, Menu } from 'antd';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import ComponentPreview from './ComponentPreview';
+import Home from './Home';
+import Login from './Login';
 import MovieDetail from './MovieDetail';
 import MovieList from './MovieList';
-import Login from './Login';
-
-import './App.css';
-import Home from './Home';
 
 const { Header, Content, Footer } = Layout;
 
@@ -35,6 +37,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
             <Route path="/movie/list" element={<MovieList />} />
+
+            <Route path="/component" element={<ComponentPreview />} />
           </Routes>
         </Router>
       </Content>

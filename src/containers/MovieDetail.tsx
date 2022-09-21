@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-
 import { Breadcrumb, Button } from 'antd';
-import { PATH } from '../routes/constant';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Movie from '../component/Movie';
+import { PATH } from '../routes/constant';
 
 // useParams : 주소에서 변화하는 값(파라미터 값)을 가져와주는 컴포넌트
 
