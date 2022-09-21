@@ -1,4 +1,4 @@
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Col, Divider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 import Movie from '../component/Movie';
@@ -53,18 +53,19 @@ function MovieList() {
         {loading ? (
           <h1>Loding...</h1>
         ) : (
-          <ul className="list">
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="list">
             {movies.map((movie) => (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                mediumCoverImage={movie.mediumCoverImage}
-                title={movie.title}
-                summary={`${movie.summary.substring(0, 100)} ...`}
-                genres={movie.genres}
-              />
+              <Col className="gutter-row" span={6} key={movie.id}>
+                <Movie
+                  id={movie.id}
+                  mediumCoverImage={movie.mediumCoverImage}
+                  title={movie.title}
+                  summary={`${movie.summary.substring(0, 100)} ...`}
+                  genres={movie.genres}
+                />
+              </Col>
             ))}
-          </ul>
+          </Row>
         )}
       </div>
     </>
