@@ -1,4 +1,4 @@
-import { Breadcrumb, Col, Divider, Row } from 'antd';
+import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 import Movie from '../component/Movie';
@@ -55,7 +55,7 @@ function MovieList() {
         ) : (
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="list">
             {movies.map((movie) => (
-              <Col className="gutter-row" span={6} key={movie.id}>
+              <Col className="gutter-row" span={4} key={movie.id}>
                 <Movie
                   id={movie.id}
                   mediumCoverImage={movie.mediumCoverImage}
