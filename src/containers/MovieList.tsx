@@ -1,7 +1,7 @@
 import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import Movie from '../component/Movie';
+import MovieListItem from '../component/Movie/MovieListItem';
 import { PATH } from '../routes/constant';
 
 export type MovieProps = {
@@ -9,7 +9,6 @@ export type MovieProps = {
   mediumCoverImage: string;
   title: string;
   summary: string;
-  descriptionFull?: string;
   genres: string[];
 };
 
@@ -20,8 +19,10 @@ function MovieList() {
   // 영화 목록
   const [movies, setMovies] = useState<MovieProps[]>([]);
 
+  // async - promise를 반환한다.
   const getMovies = async () => {
     const json = await (await fetch('https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year')).json();
+    console.log(json);
     setMovies(
       json.data.movies.map(
         (movie: any) =>
@@ -30,7 +31,6 @@ function MovieList() {
             mediumCoverImage: movie.medium_cover_image,
             title: movie.title,
             summary: movie.summary,
-            descriptionFull: movie.description_full,
             genres: movie.genres,
           } as MovieProps),
       ),
@@ -56,7 +56,7 @@ function MovieList() {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="list">
             {movies.map((movie) => (
               <Col className="gutter-row" span={4} key={movie.id}>
-                <Movie
+                <MovieListItem
                   id={movie.id}
                   mediumCoverImage={movie.mediumCoverImage}
                   title={movie.title}
