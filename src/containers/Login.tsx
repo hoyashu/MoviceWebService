@@ -1,13 +1,17 @@
 import { Breadcrumb, Button, Checkbox, Col, Form, Input, Row } from 'antd';
 import React from 'react';
 
-import Container from '../component/container';
-import { ContainerImage } from '../component/container/styles';
 import { PATH } from '../routes/constant';
+import { AuthContainer, UserInfoProps } from './AuthContainer';
 
 function Login() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
+  const { onSubmitLogin, isLogin } = AuthContainer.useContainer();
+
+  const onFinish = (formData: UserInfoProps) => {
+    // const onFinish = (formData: UserInfoProps) => {
+    console.log('values:', formData);
+    onSubmitLogin(formData);
+    // onSubmitLogin();
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -23,10 +27,6 @@ function Login() {
       <div className="site-layout-content">
         <Row justify="center" align="middle">
           <Col>
-            <Container>
-              <ContainerImage src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cjBn/image/cc7TqA9PyQp4kFKo7YT6mjNijcM.jpg" />
-              반가워요!
-            </Container>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -36,19 +36,11 @@ function Login() {
               onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
-              <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
-              >
+              <Form.Item label="id" name="id" rules={[{ required: true, message: 'Please input your username!' }]}>
                 <Input />
               </Form.Item>
 
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[{ required: true, message: 'Please input your password!' }]}
-              >
+              <Form.Item label="pwd" name="pwd" rules={[{ required: true, message: 'Please input your password!' }]}>
                 <Input.Password />
               </Form.Item>
 
