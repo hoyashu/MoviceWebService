@@ -1,12 +1,8 @@
-import Container from '../component/container';
-
 import logo from '../logo.svg';
 
 function Login() {
   return (
     <div className="App">
-      <Container>This is Container.</Container>
-
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
