@@ -1,0 +1,23 @@
+import { AutoComplete } from 'antd';
+import React, { useState } from 'react';
+
+const mockVal = (str: string, repeat = 1) => ({
+  value: str.repeat(repeat),
+});
+
+function SearchInputBox() {
+  const [value, setValue] = useState('');
+  const [options, setOptions] = useState<{ value: string }[]>([]);
+
+  const onSearch = (searchText: string) => {
+    setOptions(!searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]);
+  };
+
+  const onChange = (data: string) => {
+    setValue(data);
+  };
+
+  return <AutoComplete value={value} options={options} style={{ width: 200 }} placeholder="control mode" />;
+}
+
+export default SearchInputBox;

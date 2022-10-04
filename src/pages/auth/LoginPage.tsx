@@ -1,16 +1,14 @@
-import { Col, Row, Button, Checkbox, Form, Input, Breadcrumb } from 'antd';
+import { Breadcrumb, Button, Checkbox, Col, Form, Input, Row } from 'antd';
 import React from 'react';
-import Container from '../component/container';
-import { ContainerImage } from '../component/container/styles';
-import { PATH } from '../routes/constant';
 
-function Login() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+import { AuthContainer, UserInfoProps } from '../../containers/AuthContainer';
+import { PATH } from '../../routes/constant';
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+function LoginPage() {
+  const { onSubmitLogin, isLogin } = AuthContainer.useContainer();
+
+  const onFinish = (formData: UserInfoProps) => {
+    onSubmitLogin(formData);
   };
 
   return (
@@ -22,32 +20,19 @@ function Login() {
       <div className="site-layout-content">
         <Row justify="center" align="middle">
           <Col>
-            <Container>
-              <ContainerImage src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cjBn/image/cc7TqA9PyQp4kFKo7YT6mjNijcM.jpg" />
-              반가워요!
-            </Container>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
               wrapperCol={{ span: 16 }}
               initialValues={{ remember: true }}
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
-              <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
-              >
+              <Form.Item label="id" name="id" rules={[{ required: true, message: 'Please input your username!' }]}>
                 <Input />
               </Form.Item>
 
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[{ required: true, message: 'Please input your password!' }]}
-              >
+              <Form.Item label="pwd" name="pwd" rules={[{ required: true, message: 'Please input your password!' }]}>
                 <Input.Password />
               </Form.Item>
 
@@ -68,4 +53,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
