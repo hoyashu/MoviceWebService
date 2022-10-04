@@ -1,8 +1,11 @@
 import { Breadcrumb, Button, Col, Row } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../routes/constant';
+import { AuthContainer } from '../../containers/AuthContainer';
+import { PATH } from '../../routes/constant';
 
-function Home() {
+function HomePage() {
+  const { navigate, isLogin } = AuthContainer.useContainer();
   return (
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -15,12 +18,14 @@ function Home() {
             <h1>Welcome Here 🌈</h1>
             <Row align="middle" dir="col">
               <Col>
-                <Button type="primary" href={PATH.LOGIN}>
-                  Login
-                </Button>
+                {isLogin || (
+                  <Button type="primary" onClick={() => navigate(PATH.LOGIN)}>
+                    Login
+                  </Button>
+                )}
               </Col>
               <Col>
-                <Button type="default" href={PATH.MOVIELIST}>
+                <Button type="default" onClick={() => navigate(PATH.MOVIELIST)}>
                   Show Movie List
                 </Button>
               </Col>
@@ -32,4 +37,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

@@ -1,9 +1,9 @@
 import { Breadcrumb, Button } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import MovieDetailItem from '../component/Movie/MovieDetailItem';
-import { PATH } from '../routes/constant';
+import { PATH } from '../../routes/constant';
+import MovieDetail from './element/MovieDetail';
 
 // useParams : 주소에서 변화하는 값(파라미터 값)을 가져와주는 컴포넌트
 
@@ -18,7 +18,7 @@ export type MovieDetailProps = {
   year: number;
 };
 
-function MovieDetail() {
+function MovieDetailPage() {
   // 로딩 여부
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -34,15 +34,13 @@ function MovieDetail() {
     title: '',
   });
 
-  // const id = useParams();
-  // console.log(id)
+  const navigate = useNavigate();
 
   // 파라미터의 이름(key 값)을 알고 있다면 아래와 같은 작성법으로 바로 값을 가져올 수 있다
   const { id } = useParams();
 
   const getMovieDetail = async (movieDetailId: string) => {
     const json = await (await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${movieDetailId}`)).json();
-    console.log(json);
     setMovieDetail({
       id: json.data.movie.id,
       mediumCoverImage: json.data.movie.medium_cover_image,
@@ -64,8 +62,8 @@ function MovieDetail() {
   return (
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item href={PATH.HOME}>Home</Breadcrumb.Item>
-        <Breadcrumb.Item href={PATH.MOVIELIST}>Movie</Breadcrumb.Item>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>Movie</Breadcrumb.Item>
         <Breadcrumb.Item>{movieDetail.title}</Breadcrumb.Item>
       </Breadcrumb>
       <div className="site-layout-content">
@@ -74,7 +72,7 @@ function MovieDetail() {
         ) : (
           <>
             <h1>{movieDetail.title}</h1>
-            <MovieDetailItem
+            <MovieDetail
               key={movieDetail.id}
               id={movieDetail.id}
               mediumCoverImage={movieDetail.mediumCoverImage}
@@ -85,7 +83,7 @@ function MovieDetail() {
               rating={movieDetail.rating}
               year={movieDetail.year}
             />
-            <Button type="default" href={PATH.MOVIELIST}>
+            <Button type="default" onClick={() => navigate(PATH.MOVIELIST)}>
               Go to List
             </Button>
           </>
@@ -94,4 +92,4 @@ function MovieDetail() {
     </>
   );
 }
-export default MovieDetail;
+export default MovieDetailPage;
