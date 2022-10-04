@@ -1,24 +1,20 @@
 import { Modal } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useLocation, useNavigate } from 'react-router-dom';
 import { createContainer } from 'unstated-next';
 
 import { PATH } from '../routes/constant';
-import { MovieDetailProps } from './MovieDetail';
 
 export type UserInfoProps = {
-  name: string;
-  id: string;
-  pwd: string;
-  gender: string;
+  name?: string;
+  id?: string;
+  pwd?: string;
 };
 
 const initUserInfo: UserInfoProps = {
-  name: '',
-  id: '',
-  pwd: '',
-  gender: '',
+  name: undefined,
+  id: undefined,
+  pwd: undefined,
 };
 
 // 전역으로 사용될 것
@@ -33,16 +29,29 @@ const useAuthContainer = () => {
   // 세션 셋팅
   const setSessionUserInfo = (userId: UserInfoProps) => {
     sessionStorage.setItem('token', 'randem010');
-    sessionStorage.setItem('userId', userId.id);
-    sessionStorage.setItem('userPwd', userId.pwd);
-    sessionStorage.setItem('userName', userId.name);
+    if (userId.id) {
+      sessionStorage.setItem('userId', userId.id);
+    }
+    if (userId.name) {
+      sessionStorage.setItem('userName', userId.name);
+    }
   };
 
   // 세션 확인
-  const sessionToken = () => sessionStorage.getItem('token');
+  const getSessionUserInfo = () => {
+    return {
+      token: sessionStorage.getItem('token'),
+      id: sessionStorage.getItem('userId'),
+      name: sessionStorage.getItem('userName'),
+    };
+  };
 
   // 세션 삭제
-  const removeSessionUserInfo = () => sessionStorage.clear();
+  const removeSessionUserInfo = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('userName');
+  };
 
   // DB에서 회원정보 가져오기
   const getUserInfo = async (userInfoP: UserInfoProps) => {
@@ -117,19 +126,30 @@ const useAuthContainer = () => {
   const signOut = () => {
     // 전역 변수로 사용될 회원 정보
     setUserInfo(initUserInfo);
-    // 로그아웃 처리
+    // 로그인 상태 변경
     setIsLogin(false);
     // 세션 삭제
     removeSessionUserInfo();
+    // 메인으로 이동
+    navigate(PATH.HOME);
   };
 
   // 로그인 값이 변할 때 작동 할 것
   useEffect(() => {
     // 세션에 토큰이 남이 있는 경우 = 로그인 한 상태
-    const token = sessionToken();
-    if (token !== '' && !isLogin) {
-      // 회원 정보 가져오기
-      setIsLogin(true);
+    const sessionUserInfo = getSessionUserInfo();
+    const { token, id, name } = sessionUserInfo;
+    if (token && !isLogin) {
+      if (id && name) {
+        // 로그인 상태 변경
+        setIsLogin(true);
+
+        // 유저 정보 다시 저장
+        setUserInfo({
+          name,
+          id,
+        });
+      }
     }
   }, [isLogin]);
 
@@ -139,6 +159,7 @@ const useAuthContainer = () => {
     onSubmitLogin,
     userInfo,
     isLogin,
+    navigate,
   };
 };
 
