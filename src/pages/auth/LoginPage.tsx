@@ -1,10 +1,10 @@
 import { Breadcrumb, Button, Checkbox, Col, Form, Input, Row } from 'antd';
 import React from 'react';
 
-import { PATH } from '../routes/constant';
-import { AuthContainer, UserInfoProps } from './AuthContainer';
+import { AuthContainer, UserInfoProps } from '../../containers/AuthContainer';
+import { PATH } from '../../routes/constant';
 
-function Login() {
+function LoginPage() {
   const { onSubmitLogin, isLogin } = AuthContainer.useContainer();
 
   const onFinish = (formData: UserInfoProps) => {
@@ -61,4 +61,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

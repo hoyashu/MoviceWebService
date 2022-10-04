@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { CustomHeader } from '../component/Layout/CustomHeader';
 import SearchInputBox from '../component/SearchInputBox';
+import LoginPage from '../pages/auth/LoginPage';
+import HomePage from '../pages/home/HomePage';
+import MovieDetailPage from '../pages/movie/MovieDetailPage';
+import MovieList from '../pages/movie/MovieListPage';
 import { AuthContainer } from './AuthContainer';
 import ComponentPreview from './ComponentPreview';
-import Home from './Home';
-import Login from './Login';
-import MovieDetail from './MovieDetail';
-import MovieList from './MovieList';
 import Test from './UnstatedNextSample';
 
 const { Header, Content, Footer } = Layout;
@@ -27,9 +27,9 @@ function App() {
           </CustomHeader>
           <Content style={{ padding: '0 50px' }}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/movie/:id" element={<MovieDetail />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/movie/:id" element={<MovieDetailPage />} />
               <Route path="/movie/list" element={<MovieList />} />
 
               <Route path="/component" element={<ComponentPreview />} />

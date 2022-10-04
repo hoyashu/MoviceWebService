@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { MovieProps } from '../../containers/MovieList';
+import { MovieProps } from '../MovieListPage';
 
 const StyledMovie = styled.div`
   padding: 6px 12px;
@@ -12,7 +12,7 @@ const StyledMovie = styled.div`
 
 const imgStyle: React.CSSProperties = { width: '100%' };
 
-function MovieListItem({ id, mediumCoverImage, title, summary, genres }: MovieProps) {
+function MovieList({ id, mediumCoverImage, title, summary, genres }: MovieProps) {
   return (
     <StyledMovie>
       <dl key={id} className="item">
@@ -29,4 +29,4 @@ function MovieListItem({ id, mediumCoverImage, title, summary, genres }: MoviePr
   );
 }
 
-export default MovieListItem;
+export default MovieList;

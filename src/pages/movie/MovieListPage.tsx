@@ -1,8 +1,8 @@
 import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import MovieListItem from '../component/Movie/MovieListItem';
-import { PATH } from '../routes/constant';
+import { PATH } from '../../routes/constant';
+import MovieList from './element/MovieList';
 
 export type MovieProps = {
   id: number;
@@ -12,7 +12,7 @@ export type MovieProps = {
   genres: string[];
 };
 
-function MovieList() {
+function MovieListPage() {
   // 로딩 여부
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +56,7 @@ function MovieList() {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="list">
             {movies.map((movie) => (
               <Col className="gutter-row" span={4} key={movie.id}>
-                <MovieListItem
+                <MovieList
                   id={movie.id}
                   mediumCoverImage={movie.mediumCoverImage}
                   title={movie.title}
@@ -72,4 +72,4 @@ function MovieList() {
   );
 }
 
-export default MovieList;
+export default MovieListPage;

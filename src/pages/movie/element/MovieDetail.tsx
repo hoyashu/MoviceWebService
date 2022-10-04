@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { Rate, Tag } from 'antd';
-import { Link } from 'react-router-dom';
 
-import { MovieDetailProps } from '../../containers/MovieDetail';
+import { MovieDetailProps } from '../MovieDetailPage';
 
 const StyledMovie = styled.div`
   padding: 6px 12px;
@@ -10,7 +9,7 @@ const StyledMovie = styled.div`
   font-size: 1rem;
 `;
 
-function MovieDetailItem({
+function MovieDetail({
   id,
   mediumCoverImage,
   title,
@@ -41,4 +40,4 @@ function MovieDetailItem({
   );
 }
 
-export default MovieDetailItem;
+export default MovieDetail;
