@@ -98,7 +98,6 @@ const useAuthContainer = () => {
       }
     } catch (e) {
       // 에러처리를 어떻지 해야할지 모르겠다..!
-      console.log(e);
     }
     return result;
   };
@@ -108,7 +107,7 @@ const useAuthContainer = () => {
     // 결과에 따른 모달 처리
     const thisUserInfo: UserInfoProps = await loginMutate(userInfoP);
 
-    if (thisUserInfo.id !== '') {
+    if (thisUserInfo.id) {
       Modal.success({
         content: `반가워요! ${thisUserInfo.name}님 :)`,
       });

@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { Button, Col, Layout, Row } from 'antd';
 import React, { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AuthContainer } from '../../containers/AuthContainer';
+import { PATH } from '../../routes/constant';
+import { HeaderLogin } from '../auth/HeaderLogin';
 
 interface MainHeaderProps {
   children?: ReactNode;
@@ -10,43 +13,28 @@ interface MainHeaderProps {
 
 const { Header } = Layout;
 
-const HeaderUserName = styled.span`
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  color: rgba(107, 114, 128, 1);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-right: 1rem;
-`;
-
 export function CustomHeader({ children }: MainHeaderProps) {
-  const { userInfo, signOut } = AuthContainer.useContainer();
-  const onLogOut = () => {
-    signOut();
-  };
+  const { userInfo } = AuthContainer.useContainer();
 
   const NoPaddingHeader = styled(Header)`
     padding: 0 1rem;
   `;
 
+  const FullRow = styled(Row)`
+    height: 100%;
+    position: relative;
+  `;
+
   return (
     <NoPaddingHeader>
-      <Row justify="space-between" style={{ height: '100%', position: 'relative' }} align="middle">
-        <Col>{children}</Col>
+      <FullRow justify="space-between" align="middle">
+        <Link to={PATH.HOME}>
+          <Col>{children}</Col>
+        </Link>
         <Col>
-          <Row justify="end" align="middle">
-            {!userInfo.name || (
-              <>
-                <HeaderUserName>{userInfo.name} 님</HeaderUserName>
-                <Button type="default" onClick={onLogOut}>
-                  로그아웃
-                </Button>
-              </>
-            )}
-          </Row>
+          <HeaderLogin />
         </Col>
-      </Row>
+      </FullRow>
     </NoPaddingHeader>
   );
 }

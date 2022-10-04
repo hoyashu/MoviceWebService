@@ -1,9 +1,11 @@
-import { Breadcrumb, Button } from 'antd';
+import styled from '@emotion/styled';
+import { Breadcrumb, Button, Rate } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import MovieDetail from '../../component/movie/MovieDetail';
+import { MovieGenres } from '../../component/movie/MovieGenres';
 import { PATH } from '../../routes/constant';
-import MovieDetail from './element/MovieDetail';
 
 // useParams : 주소에서 변화하는 값(파라미터 값)을 가져와주는 컴포넌트
 
@@ -33,9 +35,6 @@ function MovieDetailPage() {
     descriptionFull: '',
     title: '',
   });
-
-  const navigate = useNavigate();
-
   // 파라미터의 이름(key 값)을 알고 있다면 아래와 같은 작성법으로 바로 값을 가져올 수 있다
   const { id } = useParams();
 
@@ -67,27 +66,7 @@ function MovieDetailPage() {
         <Breadcrumb.Item>{movieDetail.title}</Breadcrumb.Item>
       </Breadcrumb>
       <div className="site-layout-content">
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            <h1>{movieDetail.title}</h1>
-            <MovieDetail
-              key={movieDetail.id}
-              id={movieDetail.id}
-              mediumCoverImage={movieDetail.mediumCoverImage}
-              title={movieDetail.title}
-              descriptionFull={movieDetail.descriptionFull}
-              genres={movieDetail.genres}
-              language={movieDetail.language}
-              rating={movieDetail.rating}
-              year={movieDetail.year}
-            />
-            <Button type="default" onClick={() => navigate(PATH.MOVIELIST)}>
-              Go to List
-            </Button>
-          </>
-        )}
+        <MovieDetail loading={loading} movieDetail={movieDetail} />
       </div>
     </>
   );

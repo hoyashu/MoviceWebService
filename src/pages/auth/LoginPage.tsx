@@ -8,14 +8,7 @@ function LoginPage() {
   const { onSubmitLogin, isLogin } = AuthContainer.useContainer();
 
   const onFinish = (formData: UserInfoProps) => {
-    // const onFinish = (formData: UserInfoProps) => {
-    console.log('values:', formData);
     onSubmitLogin(formData);
-    // onSubmitLogin();
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -33,7 +26,6 @@ function LoginPage() {
               wrapperCol={{ span: 16 }}
               initialValues={{ remember: true }}
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
               <Form.Item label="id" name="id" rules={[{ required: true, message: 'Please input your username!' }]}>
