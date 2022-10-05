@@ -1,11 +1,8 @@
-import styled from '@emotion/styled';
-import { Breadcrumb, Button, Rate } from 'antd';
+import { Breadcrumb } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import MovieDetail from '../../component/movie/MovieDetail';
-import { MovieGenres } from '../../component/movie/MovieGenres';
-import { PATH } from '../../routes/constant';
 
 // useParams : 주소에서 변화하는 값(파라미터 값)을 가져와주는 컴포넌트
 

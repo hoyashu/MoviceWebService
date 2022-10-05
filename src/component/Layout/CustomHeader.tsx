@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
-import { Button, Col, Layout, Row } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import React, { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 
-import { AuthContainer } from '../../containers/AuthContainer';
-import { PATH } from '../../routes/constant';
 import { HeaderLogin } from '../auth/HeaderLogin';
 
 interface MainHeaderProps {
@@ -14,8 +11,6 @@ interface MainHeaderProps {
 const { Header } = Layout;
 
 export function CustomHeader({ children }: MainHeaderProps) {
-  const { userInfo } = AuthContainer.useContainer();
-
   const NoPaddingHeader = styled(Header)`
     padding: 0 1rem;
   `;
@@ -28,9 +23,7 @@ export function CustomHeader({ children }: MainHeaderProps) {
   return (
     <NoPaddingHeader>
       <FullRow justify="space-between" align="middle">
-        <Link to={PATH.HOME}>
-          <Col>{children}</Col>
-        </Link>
+        <Col>{children}</Col>
         <Col>
           <HeaderLogin />
         </Col>

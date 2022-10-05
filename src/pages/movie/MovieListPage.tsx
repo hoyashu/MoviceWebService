@@ -1,9 +1,6 @@
-import styled from '@emotion/styled';
-import { Breadcrumb, Col, Row } from 'antd';
+import { Breadcrumb } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import { MovieGenres } from '../../component/movie/MovieGenres';
 import MovieList from '../../component/movie/MovieList';
 
 export type MovieListProps = {

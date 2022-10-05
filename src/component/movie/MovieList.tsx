@@ -3,9 +3,7 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { MovieDetailProps } from '../../pages/movie/MovieDetailPage';
 import { MovieListProps } from '../../pages/movie/MovieListPage';
-import MovieDetail from './MovieDetail';
 import { MovieGenres } from './MovieGenres';
 
 type IsLoading = {
@@ -27,16 +25,16 @@ function MovieList({ loading, movies }: IsLoading) {
       {loading ? (
         <h1>Loding...</h1>
       ) : (
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="list">
+        <Row className="list">
           {movies.map((movie) => (
-            <Col className="gutter-row" span={4} key={movie.id}>
+            <Col xs={20} sm={16} md={12} lg={8} xl={4} className="gutter-row" key={movie.id}>
               <StyledMovie>
                 <dl key={movie.id} className="item">
                   <div className="thumb">
                     <img style={imgStyle} src={movie.mediumCoverImage} alt="medium cover" />
                   </div>
                   <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-                  <dd>{movie.summary}</dd>
+                  <dd>{movie.summary.length > 30 ? `${movie.summary.substr(0, 30)}...` : ''}</dd>
                   <dd>
                     <MovieGenres list={movie.genres} />
                   </dd>
